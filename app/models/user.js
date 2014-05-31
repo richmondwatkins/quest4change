@@ -2,7 +2,7 @@
 
 var users = global.nss.db.collection('users');
 // var Mongo = require('mongodb');
-// var _ = require('lodash');
+var _ = require('lodash');
 var bcrypt = require('bcrypt');
 
 class User{
@@ -45,6 +45,13 @@ class User{
     }else{
       fn(null);
     }
+  }
+
+  static findByUserName(userName, fn){
+    users.findOne({userName:userName}, (err, user)=>{
+      user = _.create(User.prototype, user);
+      fn(user);
+    });
   }
 
 }
