@@ -28,7 +28,9 @@
     "socket.io":       "*",
     "bcrypt":          "*",
     "cookie-session":  "*",
-    "cookies":         "*"
+    "cookies":         "*",
+    "multiparty":      "*",
+    "async":           "*"
   },
   "devDependencies": {
     "grunt":                "*",
