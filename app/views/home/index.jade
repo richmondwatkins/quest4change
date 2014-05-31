@@ -1,6 +1,12 @@
 extends ../shared/template
 
 block content
-  h1 Day Planner
 
-  #map
+
+
+  form(method='POST', action='/register', enctype='multipart/form-data')
+    input.form-control.username(type='text', name='userName', placeholder='Username', required='required')
+    input.form-control.email(type='email', name='email', placeholder='Email', required='required')
+    input.form-control.password(type='password', name='password', placeholder='Password', required='required')
+    input(type='file', name='image')
+    button Create
