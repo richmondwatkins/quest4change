@@ -84,15 +84,13 @@ exports.locations = (req, res)=>{
   });
 };
 
-<<<<<<< HEAD
 exports.checkin = (req, res)=>{
   User.findByUserId(req.session.userId, user=>{
     user.checkIntoLocation(req.query.locationid);
     // TODO, not redirect to the map since it takes forever to reload
     res.redirect('/user/homemap');
   });
-}
-=======
+};
 
 exports.lookup = (req, res, next)=>{
   User.findByUserId(req.session.userId, u=>{
@@ -105,7 +103,6 @@ exports.lookup = (req, res, next)=>{
 exports.searchResults= (req, res)=>{
   res.render('searchResults/searchResults', {title: 'search results'});
 };
->>>>>>> 6ae4d9a42ede575b664763a5dc4b8606a35b26c7
 
 exports.dashboard = (req, res)=>{
   res.render('users/dashboard', {title: 'FAKE DASHBOARD'});
