@@ -1,0 +1,31 @@
+extends ../shared/template
+
+block content
+  h2 Groups
+
+  button#new-group Make Group
+
+  #all-groups
+  h1 All Groups
+  each group in groups
+    #group-show(data-id='#{group._id}')
+    h4#group-name: a(href='/groups/#{group.name}/#{group._id}')= group.name
+
+    form(action='/groups/#{group._id}/join', method='POST')
+      button#join-group Join Group
+
+
+    //- .projects
+    //-     #projectId(data-id='#{project._id}')
+    //-     h1#title: a(href='/projects/#{project._id}')= project.title
+    //-       each photo in project.photos
+    //-         if(photo.isPrimary)
+    //-           img#photos(src='#{photo.file}')
+    //-     h2#description= project.description
+    //-     h4#date= project.date
+    //-     h2#tags= project.tags
+
+
+  h1 User's Groups
+  each userGroup in usersGroups
+    h4= userGroup.name

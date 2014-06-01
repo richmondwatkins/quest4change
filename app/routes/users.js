@@ -86,7 +86,12 @@ exports.locations = (req, res)=>{
 
 
 
-
+exports.lookup = (req, res, next)=>{
+  User.findByUserId(req.session.userId, u=>{
+    res.locals.user = u;
+    next();
+  });
+};
 
 
 

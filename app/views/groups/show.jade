@@ -1,0 +1,14 @@
+extends ../shared/template
+
+block content
+
+
+
+    h3= group.name
+
+    each member in group.members
+      h3= member.name
+    h3= group.owner
+    h3= user._id
+    if(user._id.toString() === group.owner)
+      h3= user.userName
