@@ -4,7 +4,6 @@
 
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
-var Quest = traceur.require(__dirname + '/../models/quest.js');
 var Location = traceur.require(__dirname + '/../models/location.js');
 var multiparty = require('multiparty');
 var fs = require('fs');
@@ -65,57 +64,26 @@ exports.homemap = (req, res)=>{
 
 exports.locations = (req, res)=>{
   User.findByUserId(req.session.userId, user=>{
-    Location.findAll(locations=>{
-      Quest.findAllQuests(quests=>{
-        var activeQuests = [];
-        user.activeQuests.map((activeQuest)=>{
-          for(var i = 0; i < quests.length; i++){
-            if(quests[i]._id.toString() === activeQuest.toString()){
-              activeQuests.push(quests[i]);
-            }
-          }
-        });
-        var activeLocIds = [];
-        activeQuests.map(quest=>{
-          for(var i = 0; i < quest.checkIns.length; i++){
-            activeLocIds.push(quest.checkIns[i]);
-          }
-        });
-
-        activeLocIds.forEach(id=>{
-          for(var i = 0; i < locations.length; i++){
-            if(locations[i]._id.toString() === id.toString()){
-              locations[i].iconType = 'dot';
-              // activeLocations.push(locations[i]);
-            }else{
-              locations[i].iconType = 'open';
-            }
-          }
-        });
-
-        user.checkIns.forEach(id=>{
-          for(var i = 0; i < locations.length; i++){
-            if(locations[i]._id.toString() === id.toString()){
-              locations[i].iconType = 'filled';
-            }
-          }
-        });
-
-        res.send(locations);
-      });
-
-
+    Location.findAll(loc=>{
+      for (var i = 0; i < loc.length; i++) {
+        var oneloc = loc[i];
+        switch(i%3) {
+        case 0:
+          oneloc.iconType = 'dot';
+          break;
+        case 1:
+          oneloc.iconType = 'filled';
+          break;
+        default:
+          oneloc.iconType = 'open';
+          break;
+        }
+      }
+      res.send(loc);
     });
   });
 };
 
-exports.checkin = (req, res)=>{
-  User.findByUserId(req.session.userId, user=>{
-    user.checkIntoLocation(req.query.locationid);
-    // TODO, not redirect to the map since it takes forever to reload
-    res.redirect('/user/homemap');
-  });
-};
 
 exports.lookup = (req, res, next)=>{
   User.findByUserId(req.session.userId, u=>{
@@ -126,7 +94,7 @@ exports.lookup = (req, res, next)=>{
 
 
 exports.searchResults= (req, res)=>{
-  res.render('searchResults/showResults', {title: 'search results'});
+  res.render('searchResults/searchResults', {title: 'search results'});
 };
 
 exports.dashboard = (req, res)=>{

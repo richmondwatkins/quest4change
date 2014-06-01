@@ -28,7 +28,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 var currentlyOpenWindow = null;
 function addMarkerToMap(marker) {
     var markerTitle = marker.name + ' (' + marker.class + ')';
-    var popupContent = '<div class="popup"><div class="popupTitle">' + markerTitle + '</div><div class="popupLink"><a href=/user/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
+    var popupContent = '<div class="popup"><div class="popupTitle">' + markerTitle + '</div><div class="popupLink"><a href=/location/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
     var infowindow = new google.maps.InfoWindow({
       content: popupContent
     });
@@ -77,6 +77,7 @@ function success(position) {
   var latLng = new google.maps.LatLng(lat, lng);
   map.setCenter(latLng);
   map.setZoom(15);
+  //console.log(position);
   addUserLocationMarker(position);
 }
 
