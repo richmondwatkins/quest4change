@@ -38,14 +38,14 @@ html
       #profile-wrapper
         #profile-content
           .row
-            #profile-img(style='background-image:url("/img/assets/placeholder-avatar.jpg")')
+            #profile-img(style='background-image:url("/img/#{user._id}/#{user.image}")')
             .info
-              h2#username Username 1456
-              h3#nickname Student Johnny
-              h3#level Explorer
+              h2#username #{user.userName}
+              h3#nickname  #{user.nickName}
+              h3#level #{user.level}
           .row
             a.create(href='#') Build Quest
-            a.create(href='#') Create Group
+            a.create(href='/groups') Create Group
           .row
             a.profile-btn(href='/badges') BADGES
             a.profile-btn(href='/groups') GROUPS

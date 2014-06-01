@@ -23,6 +23,7 @@
     //     -$lefty.outerWidth() :
     //     0
     // });
+    $('#map-filter').fadeToggle();
     $('#profile-wrapper').fadeToggle();
   }
 
