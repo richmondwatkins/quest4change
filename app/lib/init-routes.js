@@ -21,6 +21,7 @@ function load(app, fn){
   app.get('/', dbg, home.index);
 
   app.get('/dash', dbg, users.dashboard);
+  app.get('/badges', dbg, users.showBadges);
 
 
   app.get('/help', dbg, home.help);
@@ -34,6 +35,7 @@ function load(app, fn){
   app.post('/register', dbg, users.register);
   app.post('/login', dbg, users.login);
   app.get('/user/homemap', dbg, users.homemap);
+  app.get('/user/locations', dbg, users.locations);
 
   console.log('Routes Loaded');
   fn();
