@@ -55,6 +55,12 @@ class User{
     }
   }
 
+  static findAllByUserId(userIds, fn){
+    users.find({_id: { $in: userIds } }).toArray((err,users)=>{
+      console.log(users);
+    });
+  }
+
   static findByUserId(userId, fn){
     var id = Mongo.ObjectID(userId);
     users.findOne({_id:id}, (err, user)=>{

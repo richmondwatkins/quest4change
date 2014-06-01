@@ -8,9 +8,9 @@ block content
 
     h3= group.name
 
-    h3 Member's in this Group
-    each member in group.members
-      h5= member.userName
+    //- h3 Member's in this Group
+    //- //- each user in users
+    //- //-   h3= user.userName
 
     if(user._id.toString() === group.owner)
       h3 This is the Group Creator

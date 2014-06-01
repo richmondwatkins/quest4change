@@ -24,13 +24,13 @@ exports.index = (req, res)=>{
 };
 
 exports.show = (req, res)=>{
-  console.log('THIS IS THE USER');
-  console.log(res.locals.user);
   var user = res.locals.user;
   Group.findByGroupId(req.params.groupId, group=>{
-    
+    // User.findAllByUserId(group.members, users=>{
+      // console.log(users);
     res.render('groups/show', {group: group, user: user});
-  });
+    });
+  // });
 
 };
 
