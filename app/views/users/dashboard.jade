@@ -1,0 +1,23 @@
+extends ../shared/template
+
+block content
+  //#map-canvas
+  #map-canvas-placeholder
+  #controls
+    #checkin-primary
+      a(href='#')
+        img(src='/img/assets/primary-checkin.svg')
+    #nearby-quests
+      .nearby-quest
+        p.nearby-title A quest is near!
+        p.nearby-details 500ft
+      .nearby-quest
+        p.nearby-title Another quest is near!
+        p.nearby-details 1000ft
+      .nearby-quest
+        p.nearby-title A third quest is near!
+        p.nearby-details 500ft
+
+
+block scripts
+  script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=SET_TO_TRUE_OR_FALSE')

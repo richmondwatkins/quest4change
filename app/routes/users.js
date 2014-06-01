@@ -4,12 +4,28 @@
 
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
+var Location = traceur.require(__dirname + '/../models/location.js');
 var multiparty = require('multiparty');
 var fs = require('fs');
 
 exports.login = (req, res)=>{
-  res.render('home/index', {title: 'Node.js: Home'});
+  User.findByUserName(req.body.userName, user=>{
+    if(user){
+      user.login(req.body, u=>{
+        if(u){
+          req.session.userId = u._id;
+          res.redirect('/');
+        }else{
+          req.session.userId = null; //message - incorrect password
+          res.redirect('/');
+        }
+      });
+    }else{
+      res.redirect('/'); //message - no account. please register
+    }
+  });
 };
+
 
 
 exports.register = (req, res)=>{
@@ -26,6 +42,7 @@ exports.register = (req, res)=>{
         fs.mkdirSync(`${__dirname}/../static/img/${u._id}`);
         fs.renameSync(filePath, `${__dirname}/../static/img/${u._id}/${fileName}`);//need to normalize filepath
         req.session.userId = u._id;
+        console.log(req.session);
         res.redirect('/');
       }else{
         req.session.userId = null; //message - account already exists
@@ -33,4 +50,31 @@ exports.register = (req, res)=>{
       }
     });
   });
+};
+
+exports.homemap = (req, res)=>{
+  User.findByUserId(req.session.userId, user=>{
+    Location.findAll(loc=>{
+      console.log(loc);
+      console.log(user);
+      // res.render('users/map', {user:user, location:loc, title:'Home Map'});
+    });
+  });
+};
+
+
+
+exports.lookup = (req, res, next)=>{
+  User.findByUserId(req.session.userId, u=>{
+    res.locals.user = u;
+    next();
+  });
+};
+
+
+
+
+
+exports.dashboard = (req, res)=>{
+  res.render('users/dashboard', {title: 'FAKE DASHBOARD'});
 };
