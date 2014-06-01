@@ -84,6 +84,13 @@ exports.locations = (req, res)=>{
   });
 };
 
+exports.checkin = (req, res)=>{
+  User.findByUserId(req.session.userId, user=>{
+    user.checkIntoLocation(req.query.locationid);
+    // TODO, not redirect to the map since it takes forever to reload
+    res.redirect('/user/homemap');
+  });
+};
 
 exports.lookup = (req, res, next)=>{
   User.findByUserId(req.session.userId, u=>{

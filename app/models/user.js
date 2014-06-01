@@ -66,6 +66,16 @@ class User{
       fn(user);
     });
   }
+
+  checkIntoLocation(locationId, fn) {
+    this.checkIns.push(locationId);
+    // TODO, update other properties of user as a result of the checkin
+    users.save(this, function(err, u) {
+      if (fn) {
+        fn(null);
+      }
+    });
+  }
 }
 
 module.exports = User; //exporting Class out
