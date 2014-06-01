@@ -66,7 +66,6 @@ class User{
       fn(user);
     });
   }
-
 }
 
 module.exports = User; //exporting Class out

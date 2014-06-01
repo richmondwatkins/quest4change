@@ -85,7 +85,6 @@ exports.locations = (req, res)=>{
 };
 
 
-
 exports.lookup = (req, res, next)=>{
   User.findByUserId(req.session.userId, u=>{
     res.locals.user = u;
@@ -94,8 +93,9 @@ exports.lookup = (req, res, next)=>{
 };
 
 
-
-
+exports.searchResults= (req, res)=>{
+  res.render('searchResults/searchResults', {title: 'search results'});
+};
 
 exports.dashboard = (req, res)=>{
   res.render('users/dashboard', {title: 'FAKE DASHBOARD'});
