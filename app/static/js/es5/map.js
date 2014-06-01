@@ -15,8 +15,9 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 var currentlyOpenWindow = null;
 function addMarkerToMap(marker) {
+     var popupContent = '<div class="popup"><div class="popupTitle">' + marker.name + '</div><div class="popupLink"><a href=/location/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
      var infowindow = new google.maps.InfoWindow({
-      content: marker.name
+      content: popupContent
     });
 
     var gmapsmarker = new google.maps.Marker({
@@ -37,7 +38,6 @@ function addAllMarkers(markers) {
         addMarkerToMap(markers[i]);
     }
 }
-
 function doAjax() {
   $.ajax('http://localhost:3000/user/locations').done(function(data){
     addAllMarkers(data);
@@ -56,6 +56,5 @@ function success(position) {
   var latLng = new google.maps.LatLng(lat, lng);
   map.setCenter(latLng);
   map.setZoom(15);
-  ///addMarker(lat,lng);
   console.log(position);
 }
