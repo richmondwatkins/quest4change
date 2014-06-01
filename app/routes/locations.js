@@ -70,3 +70,10 @@ exports.addPark = (req, res)=>{
     res.send('added ' + body.length + ' park objects');
   });
 };
+
+
+exports.getAllLocations = (req, res)=>{
+  locationCollection.find().toArray(function(err, docs) {
+    res.send(docs);
+  });
+};
