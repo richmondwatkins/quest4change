@@ -1,4 +1,100 @@
+@base: #1C75BC;
+
 html, body, #map{
   height: 100%;
   width: 100%;
+}
+
+* {
+  -webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+  transition: all 0.3s;
+}
+
+.clear {
+  width:100%;
+  clear:both;
+}
+
+body {
+  background-color: #eee;
+  color: #333;
+}
+
+header {
+  width:100%;
+  padding: 10px 0;
+  background-color: @base;
+  color:#fff;
+  margin-bottom:25px;
+
+  #header-content {
+    width:80%;
+    margin: 0 auto;
+
+    #logo {
+      float:left;
+
+      img {
+        width: 300px;
+        height:auto;
+      }
+    }
+
+    nav {
+      float:right;
+
+      ul {
+        margin: 0;
+        padding: 20px 0 0 0;
+        list-style-type:none;
+
+        li {
+          float:left;
+
+          a {
+            text-decoration:none;
+            color: #fff;
+            margin-right: 15px;
+            border: 1px solid #fff;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 3px;
+          }
+
+          a:hover {
+            background-color: #fff;
+            color: @base;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+#container {
+  width:80%;
+  margin:0 auto;
+}
+
+input {
+  padding: 10px;
+  background-color:#fff;
+  border:none;
+  margin-bottom: 5px;
+  border-bottom: 3px solid #ddd;
+  border-radius: 3px;
+}
+
+input:focus {
+  outline:none;
+  border-bottom: 3px solid @base;
+}
+
+button {
+  border: none;
+  padding: 10px 20px;
+  background-color: @base;
+  color:#fff;
+  border-radius: 3px;
 }

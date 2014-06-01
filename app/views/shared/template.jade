@@ -7,7 +7,19 @@ html
     link(href='/css/buttons.css', rel='stylesheet')
     link(href='/less/app.css', rel='stylesheet')
   body
-    block content
+    header
+      #header-content
+        #logo
+          img(src='/img/assets/logo-white.svg')
+        nav
+          ul
+            li
+              a(href='#') LOGIN
+            li
+              a(href='#') DASH
+        .clear
+    #container
+      block content
 
     script(src='/js/vendor/jquery-2.1.1.js')
     script(src='/js/vendor/lodash-2.4.1.js')
