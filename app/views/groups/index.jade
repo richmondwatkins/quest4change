@@ -13,20 +13,10 @@ block content
     form(action='/groups/#{group._id}/join', method='POST')
       button#join-group Join Group
 
-
-    //- .projects
-    //-     #projectId(data-id='#{project._id}')
-    //-     h1#title: a(href='/projects/#{project._id}')= project.title
-    //-       each photo in project.photos
-    //-         if(photo.isPrimary)
-    //-           img#photos(src='#{photo.file}')
-    //-     h2#description= project.description
-    //-     h4#date= project.date
-    //-     h2#tags= project.tags
-
   h1 Group's I Am A Member of
-  each group in user.groups
-    h2= group.name
+
+  each joinedGroup in user.groups
+    h3= joinedGroup.name
 
   h1 User's Groups
   each userGroup in usersGroups

@@ -41,8 +41,8 @@ class User{
     });
   }
 
-  addGroup(groupId){
-    this.groups.push(groupId);
+  addGroup(group){
+    this.groups.push(group);
     users.save(this, ()=>{});
   }
 

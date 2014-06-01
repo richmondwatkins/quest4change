@@ -28,6 +28,8 @@ class Group{
   }
 
 
+
+
   static isOwner(userId, fn){
     groups.find({owner: userId}).toArray((err, owner)=>{
       fn(owner);
@@ -37,6 +39,15 @@ class Group{
   static findAll(fn){
     groups.find().toArray((err, groups)=>{
       fn(groups);
+  });
+}
+
+static findAllByGroupId(groupId, fn){
+  console.log(groupId);
+  var id = Mongo.ObjectID(groupId);
+  groups.find({_id:id}, (err, group)=>{
+    group = _.create(Group.prototype, group);
+    fn(group);
   });
 }
 

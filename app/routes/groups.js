@@ -12,10 +12,13 @@ exports.index = (req, res)=>{
   Group.findAll(groups=>{
     User.findByUserId(req.session.userId, user=>{
       Group.isOwner(req.session.userId, usersGroups=>{
+        // Group.findAllByGroupId(user.groups, joinedGroups=>{
+
         console.log(usersGroups);
 
-      res.render('groups/index', {user: user, groups: groups, usersGroups: usersGroups });
-      });
+      res.render('groups/index', {user: user, groups: groups, usersGroups: usersGroups});
+        });
+      // });
     });
   });
 };
@@ -25,8 +28,7 @@ exports.show = (req, res)=>{
   console.log(res.locals.user);
   var user = res.locals.user;
   Group.findByGroupId(req.params.groupId, group=>{
-    console.log('THIS IS THE GROPU');
-    console.log(group);
+    
     res.render('groups/show', {group: group, user: user});
   });
 
@@ -36,7 +38,7 @@ exports.show = (req, res)=>{
 exports.join = (req, res)=>{
   var userId = res.locals.user._id;
   Group.findByGroupId(req.params.groupId, group=>{
-    res.locals.user.addGroup(group._id);
+    res.locals.user.addGroup(group);
     group.joinGroup(userId);
 
     // group.save(()=>{
