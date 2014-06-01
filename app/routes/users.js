@@ -14,7 +14,7 @@ exports.login = (req, res)=>{
       user.login(req.body, u=>{
         if(u){
           req.session.userId = u._id;
-          res.redirect('/user/homemap');
+          res.redirect('/dash');
         }else{
           req.session.userId = null; //message - incorrect password
           res.redirect('/');
@@ -84,6 +84,7 @@ exports.locations = (req, res)=>{
   });
 };
 
+<<<<<<< HEAD
 exports.checkin = (req, res)=>{
   User.findByUserId(req.session.userId, user=>{
     user.checkIntoLocation(req.query.locationid);
@@ -91,6 +92,20 @@ exports.checkin = (req, res)=>{
     res.redirect('/user/homemap');
   });
 }
+=======
+
+exports.lookup = (req, res, next)=>{
+  User.findByUserId(req.session.userId, u=>{
+    res.locals.user = u;
+    next();
+  });
+};
+
+
+exports.searchResults= (req, res)=>{
+  res.render('searchResults/searchResults', {title: 'search results'});
+};
+>>>>>>> 6ae4d9a42ede575b664763a5dc4b8606a35b26c7
 
 exports.dashboard = (req, res)=>{
   res.render('users/dashboard', {title: 'FAKE DASHBOARD'});

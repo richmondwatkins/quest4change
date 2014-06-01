@@ -28,12 +28,15 @@ class User{
       users.findOne({userName:this.userName}, (err, u2)=>{
         if(u || u2){//if user email or username exists,
           fn(null);
+
         }else{
           this.password = bcrypt.hashSync(this.password, 8); //hashed/encrypted version of password
           users.save(this, (err, u)=>{
             fn(u);
           });
+
         }
+
       });
     });
   }
@@ -47,20 +50,29 @@ class User{
     }
   }
 
-  static findByUserName(userName, fn){
-    users.findOne({userName:userName}, (err, user)=>{
+  static findByUserId(userId, fn){
+    var id = Mongo.ObjectID(userId);
+    console.log('ID ID ID');
+    console.log(id);
+    users.findOne({_id:id}, (err, user)=>{
       user = _.create(User.prototype, user);
       fn(user);
     });
   }
 
+<<<<<<< HEAD
   static findByUserId(userId, fn){
     userId = Mongo.ObjectID(userId);
     users.findOne({_id:userId}, (err, user)=>{
+=======
+  static findByUserName(userName, fn){
+    users.findOne({userName:userName}, (err, user)=>{
+>>>>>>> 6ae4d9a42ede575b664763a5dc4b8606a35b26c7
       user = _.create(User.prototype, user);
       fn(user);
     });
   }
+<<<<<<< HEAD
 
   checkIntoLocation(locationId, fn) {
     this.checkIns.push(locationId);
@@ -71,6 +83,8 @@ class User{
       }
     });
   }
+=======
+>>>>>>> 6ae4d9a42ede575b664763a5dc4b8606a35b26c7
 }
 
 module.exports = User; //exporting Class out
