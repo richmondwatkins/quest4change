@@ -30,6 +30,7 @@ function load(app, fn){
   app.post('/register', dbg, users.register);
   app.post('/login', dbg, users.login);
   app.get('/user/homemap', dbg, users.homemap);
+  app.get('/user/locations', dbg, users.locations);
 
   console.log('Routes Loaded');
   fn();

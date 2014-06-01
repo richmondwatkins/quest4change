@@ -19,8 +19,7 @@ function addMarkerToMap(marker) {
 
     var gmapsmarker = new google.maps.Marker({
       position: new google.maps.LatLng(marker.gis[0],marker.gis[1]),
-      map: map,
-      title: 'Hello World!'
+      map: map
     });
 
     google.maps.event.addListener(gmapsmarker, 'click', function() {
