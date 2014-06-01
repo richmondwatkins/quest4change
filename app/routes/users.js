@@ -15,7 +15,7 @@ exports.login = (req, res)=>{
       user.login(req.body, u=>{
         if(u){
           req.session.userId = u._id;
-          res.redirect('/user/homemap');
+          res.redirect('/dash');
         }else{
           req.session.userId = null; //message - incorrect password
           res.redirect('/');
@@ -43,6 +43,7 @@ exports.register = (req, res)=>{
         fs.mkdirSync(`${__dirname}/../static/img/${u._id}`);
         fs.renameSync(filePath, `${__dirname}/../static/img/${u._id}/${fileName}`);//need to normalize filepath
         req.session.userId = u._id;
+        console.log(req.session);
         res.redirect('/');
       }else{
         req.session.userId = null; //message - account already exists
@@ -106,4 +107,32 @@ exports.locations = (req, res)=>{
 
     });
   });
+};
+
+exports.checkin = (req, res)=>{
+  User.findByUserId(req.session.userId, user=>{
+    user.checkIntoLocation(req.query.locationid);
+    // TODO, not redirect to the map since it takes forever to reload
+    res.redirect('/user/homemap');
+  });
+};
+
+exports.lookup = (req, res, next)=>{
+  User.findByUserId(req.session.userId, u=>{
+    res.locals.user = u;
+    next();
+  });
+};
+
+
+exports.searchResults= (req, res)=>{
+  res.render('searchResults/showResults', {title: 'search results'});
+};
+
+exports.dashboard = (req, res)=>{
+  res.render('users/dashboard', {title: 'FAKE DASHBOARD'});
+};
+
+exports.showBadges = (req, res)=>{
+  res.render('badges/index', {title: 'BADGES'});
 };

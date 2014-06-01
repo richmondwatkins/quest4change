@@ -4,14 +4,27 @@ block content
 
 
 
-  form(method='POST', action='/register', enctype='multipart/form-data')
-    input.form-control.username(type='text', name='userName', placeholder='Username', required='required')
-    input.form-control.email(type='email', name='email', placeholder='Email', required='required')
-    input.form-control.password(type='password', name='password', placeholder='Password', required='required')
-    input(type='file', name='image')
-    button Register
+  #register
+    form(method='POST', action='/register', enctype='multipart/form-data')
+      input.form-control.username(type='text', name='userName', placeholder='Username', required='required')
+      .clear
+      input.form-control.username(type='text', name='nickName', placeholder='Nick Name', required='required')
+      .clear
+      input.form-control.username(type='text', name='groupNumber', placeholder='Group Number', required='required')
+      .clear
+      input.form-control.email(type='email', name='email', placeholder='Email', required='required')
+      .clear
+      input.form-control.password(type='password', name='password', placeholder='Password', required='required')
+      .clear
+      input(type='file', name='image')
+      .clear
+      button Create Account
+    .clear
 
-  form(method='POST', action='/login')
-    input.form-control.username(type='text', name='userName', placeholder='Username', required='required')
-    input.form-control.password(type='password', name='password', placeholder='Password', required='required')
-    button Login
+  #login
+    form(method='POST', action='/login')
+      input.form-control.username(type='text', name='userName', placeholder='Username', required='required')
+      .clear
+      input.form-control.password(type='password', name='password', placeholder='Password', required='required')
+      .clear
+      button Login
