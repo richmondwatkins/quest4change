@@ -19,6 +19,11 @@ function load(app, fn){
   var locations = traceur.require(__dirname + '/../routes/locations.js');
 
   app.get('/', dbg, home.index);
+
+  app.get('/dash', dbg, users.dashboard);
+  app.get('/badges', dbg, users.showBadges);
+
+
   app.get('/help', dbg, home.help);
   // routes to pull data from socrata portal and add location objects to DB
   // curl -X POST http://localhost:4000/addHistory
