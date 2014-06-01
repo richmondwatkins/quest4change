@@ -1,7 +1,8 @@
 'use strict';
 
 var groups = global.nss.db.collection('groups');
-// var _ = require('lodash');
+var Mongo = require('mongodb');
+var _ = require('lodash');
 
 
 class Group{
@@ -14,19 +15,50 @@ class Group{
     this.quests = [];
   }
 
+  joinGroup(user){
+    this.members.push(user);
+    console.log('THIS IS THE USER');
+    console.log(user);
+    console.log('THIS GROUPS MEMBERs');
+    console.log(this.members);
+
+  }
+
+
+
+    save(fn){
+    groups.save(this, ()=>fn());
+  }
+
+   isMember(userId){
+     groups.findOne({members: userId}, (err, user)=>{
+       if(user){
+         return true;
+       }else{
+         return false;
+       }
+
+     });
+
+   }
+
   static isOwner(userId, fn){
     groups.find({owner: userId}).toArray((err, owner)=>{
       fn(owner);
     });
   }
 
-    save(fn){
-    groups.save(this, ()=>fn());
-  }
-
   static findAll(fn){
     groups.find().toArray((err, groups)=>{
       fn(groups);
+  });
+}
+
+static findByGroupId(groupId, fn){
+  var id = Mongo.ObjectID(groupId);
+  groups.findOne({_id:id}, (err, group)=>{
+    group = _.create(Group.prototype, group);
+    fn(group);
   });
 }
 

@@ -19,6 +19,8 @@ function load(app, fn){
   var locations = traceur.require(__dirname + '/../routes/locations.js');
   var groups = traceur.require(__dirname + '/../routes/groups.js');
 
+  app.all('*', users.lookup);
+
   app.get('/', dbg, home.index);
 
   app.get('/dash', dbg, users.dashboard);
@@ -37,6 +39,9 @@ function load(app, fn){
   app.get('/groups', dbg, groups.index);
   app.get('/groups/new', dbg, groups.new);
   app.post('/groups/create', dbg, groups.create);
+  app.get('/groups/:groupname/:groupId', dbg, groups.show);
+
+  app.post('/groups/:groupId/join', dbg, groups.join);
 
   console.log('Routes Loaded');
   fn();
