@@ -20,10 +20,11 @@ function load(app, fn){
   var groups = traceur.require(__dirname + '/../routes/groups.js');
 
   app.all('*', users.lookup);
+
   app.get('/', dbg, home.index);
 
   app.get('/dash', dbg, users.dashboard);
-  app.get('/showResults', dbg, users.searchResults);
+  app.get('/searchResults', dbg, users.searchResults);
   app.get('/badges', dbg, users.showBadges);
 
 
@@ -31,13 +32,12 @@ function load(app, fn){
   app.post('/addArt', dbg, locations.addArt);
   app.post('/addHistory', dbg, locations.addHistory);
   app.post('/addPark', dbg, locations.addPark);
-  //app.get('/locations', dbg, locations.getAllLocations);
+  app.get('/locations', dbg, locations.getAllLocations);
 
   app.post('/register', dbg, users.register);
   app.post('/login', dbg, users.login);
   app.get('/user/homemap', dbg, users.homemap);
   app.get('/user/locations', dbg, users.locations);
-  app.get('/user/checkin', dbg, users.checkin);
 
   app.get('/groups', dbg, groups.index);
   app.get('/groups/new', dbg, groups.new);

@@ -4,19 +4,31 @@
 var map;
 function initialize() {
     var mapOptions = {
-        center: new google.maps.LatLng(36.1666670, -86.7833330),
-        zoom: 11
+        center: new google.maps.LatLng(36.1565006, -86.7768346),
+        zoom: 15
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
   doAjax();
   findMe();
+  $('select').change(function() {
+    var selectionVal = $('select').val();
+    showMarkersWithCategory(selectionVal);
+    //console.log(selectionVal);
+  });
+  // add handler for location type filter
+  /*
+  $('select').change(function() {
+    val selectionVal = $('select').val();
+    showMarkersWithCategory(selectionVal);
+  });
+  */
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 var currentlyOpenWindow = null;
 function addMarkerToMap(marker) {
     var markerTitle = marker.name + ' (' + marker.class + ')';
-    var popupContent = '<div class="popup"><div class="popupTitle">' + markerTitle + '</div><div class="popupLink"><a href=/user/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
+    var popupContent = '<div class="popup"><div class="popupTitle">' + markerTitle + '</div><div class="popupLink"><a href=/location/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
     var infowindow = new google.maps.InfoWindow({
       content: popupContent
     });
@@ -37,10 +49,12 @@ function addMarkerToMap(marker) {
         infowindow.open(map,gmapsmarker);
         currentlyOpenWindow = infowindow;
     });
+  return gmapsmarker;
 }
+var allgmapmarkers = [];
 function addAllMarkers(markers) {
     for (var i = 0; i < markers.length; i++) {
-        addMarkerToMap(markers[i]);
+        allgmapmarkers.push(addMarkerToMap(markers[i]));
     }
 }
 var markers = []; // make markers global for debugging
@@ -63,7 +77,7 @@ function success(position) {
   var latLng = new google.maps.LatLng(lat, lng);
   map.setCenter(latLng);
   map.setZoom(15);
-<<<<<<< HEAD
+  //console.log(position);
   addUserLocationMarker(position);
 }
 
@@ -110,7 +124,4 @@ function removeAllMarkers() {
     allgmapmarkers[i].setMap(null);
   }
   allgmapmarkers = [];
-=======
-  console.log(position);
->>>>>>> parent of af38be8... add filtering to map, set initial location to music city center
 }
