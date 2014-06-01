@@ -1,34 +1,45 @@
 extends ../shared/template
 
 block content
-  h2 Groups
 
-  button#new-group Make Group
+  #container
+    .row
+      h2.group-headline Groups
+      button#new-group Make Group
 
-  #all-groups
-  h1 All Groups
-  each group in groups
-    #group-show(data-id='#{group._id}')
-    h4#group-name: a(href='/groups/#{group.name}/#{group._id}')= group.name
+      #new-group-form
 
-    form(action='/groups/#{group._id}/join', method='POST')
-      button#join-group Join Group
+      ul#group-categories
+        li
+          a#show-allgroup-cat(href='#') All Groups
+        li
+          a#show-mygroup-cat(href='#') My Groups
+        li
+          a#show-createdgroup-cat(href='#') Manage Groups
 
+      .group-cat#all-groups
+        h2 All Groups
+        each group in groups
+          .group
+            #group-show(data-id='#{group._id}')
+            h4#group-name: a(href='/groups/#{group.name}/#{group._id}')= group.name
 
-    //- .projects
-    //-     #projectId(data-id='#{project._id}')
-    //-     h1#title: a(href='/projects/#{project._id}')= project.title
-    //-       each photo in project.photos
-    //-         if(photo.isPrimary)
-    //-           img#photos(src='#{photo.file}')
-    //-     h2#description= project.description
-    //-     h4#date= project.date
-    //-     h2#tags= project.tags
+            form(action='/groups/#{group._id}/join', method='POST')
+              button#join-group Join Group
 
+      .clear
+      .group-cat#mygroups
+        h2 My Groups
+        p group name
+        p group name
+        p group name
+      .clear
 
-  h1 User's Groups
-  each userGroup in usersGroups
-    h4= userGroup.name
+      .group-cat#createdgroups
+        h2 Created Groups
+        each userGroup in usersGroups
+          .group
+            h4= userGroup.name
 
 block scripts
   script(src='/js/es6/compiled/groups.js')
