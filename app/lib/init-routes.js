@@ -24,6 +24,7 @@ function load(app, fn){
   app.get('/', dbg, home.index);
 
   app.get('/dash', dbg, users.dashboard);
+  app.get('/searchResults', dbg, users.searchResults);
   app.get('/badges', dbg, users.showBadges);
 
 
