@@ -63,15 +63,19 @@ function success(position) {
   var latLng = new google.maps.LatLng(lat, lng);
   map.setCenter(latLng);
   map.setZoom(15);
-  //addUserLocationMarker(position);
-  console.log(position);
+  addUserLocationMarker(position);
 }
-/*
-var addUserLocationMarker(position) {
-var gmapsmarker = new google.maps.Marker({
-  position: new google.maps.LatLng(marker.gis[0],marker.gis[1]),
-  map: map,
-  icon: iconObj});
 
+function addUserLocationMarker(position) {
+  var symbol = {
+    path: google.maps.SymbolPath.CIRCLE,
+    strokeColor: "darkgreen",
+    scale: 10
+  }
+
+  var gmapsmarker = new google.maps.Marker({
+    position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+    map: map,
+    icon: symbol
+  });
 }
-*/
