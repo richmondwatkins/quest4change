@@ -1,0 +1,67 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title= title
+    link(href='/css/normalize.css', rel='stylesheet')
+    link(href='/css/buttons.css', rel='stylesheet')
+    link(href='/less/app.css', rel='stylesheet')
+    link(href='/css/jquery-ui-1.10.4.css', rel='stylesheet')
+    meta(name='viewport', width='viewport-width', content='initial-scale=1.0, user-scalable=no')
+    script(src='/js/vendor/jquery-ui-1.10.4.js')
+    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=SET_TO_TRUE_OR_FALSE')
+    script(type='text/javascript', src='/js/es5/map.js')
+
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css')
+    script(src='//code.jquery.com/jquery-1.10.2.js')
+    script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
+    script(type='text/javascript').
+      $(function() {
+      $( "#tabs" ).tabs();
+      });
+
+  body
+
+    #body-wrapper
+      header
+        #header-content
+          #profile-link
+            a#profile(href='#')
+              img(src='/img/assets/icon-showprofile.svg')
+          #logo
+            a(href='/dash')
+              img(src='/img/assets/logo-white.svg')
+
+          form#search
+            input(type='text', name='search', placeholder='Search')
+            button Go!
+
+      //- #profile-wrapper
+      //-   #profile-content
+      //-     .row
+      //-       #profile-img(style='background-image:url("/img/#{user._id}/#{user.image}")')
+      //-       .info
+      //-         h2#username #{user.userName}
+      //-         h3#nickname  #{user.nickName}
+      //-         h3#level #{user.level}
+      //-     .row
+      //-       a.create(href='#') Build Quest
+      //-       a.create(href='/groups') Create Group
+      //-     .row
+      //-       a.profile-btn(href='/badges') BADGES
+      //-       a.profile-btn(href='/groups') GROUPS
+      //-       a.profile-btn(href='#') CHECK-INS
+      //-       a.profile-btn(href='#') QUESTS
+      //-     .clear
+
+      block content
+      script(src='/js/vendor/jquery-2.1.1.js')
+      script(src='/js/vendor/lodash-2.4.1.js')
+      script(src='/js/vendor/moment-2.6.0.js')
+      script(src='/js/vendor/buttons.js')
+      script(src='/js/vendor/traceur.js')
+      //script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=true')
+      script(src='/js/es6/compiled/main.js')
+      script(src='/js/es6/compiled/maps.js')
+
+      block scripts
