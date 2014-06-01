@@ -64,6 +64,20 @@ exports.homemap = (req, res)=>{
 exports.locations = (req, res)=>{
   User.findByUserId(req.session.userId, user=>{
     Location.findAll(loc=>{
+      for (var i = 0; i < loc.length; i++) {
+        var oneloc = loc[i];
+        switch(i%3) {
+        case 0:
+          oneloc.iconType = 'dot';
+          break;
+        case 1:
+          oneloc.iconType = 'filled';
+          break;
+        default:
+          oneloc.iconType = 'open';
+          break;
+        }
+      }
       res.send(loc);
     });
   });
