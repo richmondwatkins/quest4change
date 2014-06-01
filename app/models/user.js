@@ -57,10 +57,20 @@ class User{
   static findByUserId(userId, fn){
     userId = Mongo.ObjectID(userId);
     users.findOne({_id:userId}, (err, user)=>{
+      user = _.create(User.prototype, user);
       fn(user);
     });
   }
 
+  checkIntoLocation(locationId, fn) {
+    this.checkIns.push(locationId);
+    // TODO, update other properties of user as a result of the checkin
+    users.save(this, function(err, u) {
+      if (fn) {
+        fn(null);
+      }
+    });
+  }
 }
 
 module.exports = User; //exporting Class out

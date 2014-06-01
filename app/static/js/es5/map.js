@@ -15,7 +15,7 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 var currentlyOpenWindow = null;
 function addMarkerToMap(marker) {
-     var popupContent = '<div class="popup"><div class="popupTitle">' + marker.name + '</div><div class="popupLink"><a href=/location/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
+     var popupContent = '<div class="popup"><div class="popupTitle">' + marker.name + '</div><div class="popupLink"><a href=/user/checkin?locationid=' + marker._id + '>Check In</a></div></div>';
      var infowindow = new google.maps.InfoWindow({
       content: popupContent
     });
