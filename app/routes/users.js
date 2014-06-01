@@ -42,6 +42,7 @@ exports.register = (req, res)=>{
         fs.mkdirSync(`${__dirname}/../static/img/${u._id}`);
         fs.renameSync(filePath, `${__dirname}/../static/img/${u._id}/${fileName}`);//need to normalize filepath
         req.session.userId = u._id;
+        console.log(req.session);
         res.redirect('/');
       }else{
         req.session.userId = null; //message - account already exists
@@ -59,4 +60,16 @@ exports.homemap = (req, res)=>{
       // res.render('users/map', {user:user, location:loc, title:'Home Map'});
     });
   });
+};
+
+
+
+
+
+
+
+
+
+exports.dashboard = (req, res)=>{
+  res.render('users/dashboard', {title: 'FAKE DASHBOARD'});
 };

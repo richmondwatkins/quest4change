@@ -20,9 +20,11 @@ function load(app, fn){
   var groups = traceur.require(__dirname + '/../routes/groups.js');
 
   app.get('/', dbg, home.index);
+
+  app.get('/dash', dbg, users.dashboard);
+
+
   app.get('/help', dbg, home.help);
-  // routes to pull data from socrata portal and add location objects to DB
-  // curl -X POST http://localhost:4000/addHistory
   app.post('/addArt', dbg, locations.addArt);
   app.post('/addHistory', dbg, locations.addHistory);
   app.post('/addPark', dbg, locations.addPark);
