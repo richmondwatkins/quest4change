@@ -9,10 +9,13 @@ class User{
   constructor(fields, files, userName){
     this.email = fields.email[0];
     this.password = fields.password[0];
+    this.nickName = fields.nickName[0];
     this.userName = userName;
     this.achievements = [];
     this.level = 'Explorer';
-    this.groups = [];
+    if(fields.groupNumber[0]){
+      this.groups = [fields.groupNumber[0]];
+    }
     this.image = files.image[0].originalFilename;//add entire normalized file path
     this.checkIns = [];
     this.walkScore = 0;
