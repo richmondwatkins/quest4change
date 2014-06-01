@@ -67,6 +67,13 @@ class User{
     });
   }
 
+  static findByUserId(userId, fn){
+    userId = Mongo.ObjectID(userId);
+    users.findOne({_id:userId}, (err, user)=>{
+      fn(user);
+    });
+  }
+
 }
 
 module.exports = User; //exporting Class out

@@ -3,9 +3,11 @@ html
   head
     meta(charset='utf-8')
     title= title
+    meta(name='viewport',width='viewport-width', content='initial-scale=1.0, user-scalable=no')
     link(href='/css/normalize.css', rel='stylesheet')
     link(href='/css/buttons.css', rel='stylesheet')
     link(href='/less/app.css', rel='stylesheet')
+
   body
     header
       #header-content
@@ -26,7 +28,6 @@ html
     script(src='/js/vendor/moment-2.6.0.js')
     script(src='/js/vendor/buttons.js')
     script(src='/js/vendor/traceur.js')
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=true')
     script(src='/js/es6/compiled/main.js')
     script(src='/js/es6/compiled/maps.js')
     script(src='/js/es6/compiled/groups.js')

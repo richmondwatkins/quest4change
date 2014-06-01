@@ -20,6 +20,7 @@ html, body, #map{
 body {
   background-color: #eee;
   color: #333;
+  position:relative;
 }
 
 header {
@@ -27,17 +28,20 @@ header {
   padding: 10px 0;
   background-color: @base;
   color:#fff;
-  margin-bottom:25px;
 
   #header-content {
-    width:80%;
-    margin: 0 auto;
+    position:relative;
+    padding-bottom: 5px;
+
 
     #logo {
-      float:left;
+      text-align:center;
+      display:inline-block;
+      margin: 0 auto;
 
       img {
-        width: 300px;
+        margin-top: 10px;
+        width: 200px;
         height:auto;
       }
     }
@@ -77,6 +81,7 @@ header {
 #container {
   width:80%;
   margin:0 auto;
+  padding-top: 25px;
 }
 
 #register {
@@ -96,6 +101,12 @@ input {
   border-radius: 3px;
 }
 
+input#search {
+  position: absolute;
+  right:10px;
+  top: 10px;
+}
+
 input:focus {
   outline:none;
   border-bottom: 3px solid @base;
@@ -108,4 +119,143 @@ button {
   color:#fff;
   border-radius: 3px;
 
+}
+
+// #map-canvas {
+//   max-height: 100%;
+//   position:relative;
+// }
+
+#map-canvas {
+  height: 2000px;
+  max-height: 100%;
+  position:relative;
+  margin: 0px;
+  padding: 0px
+}
+
+#profile-link {
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+  background-color: @base;
+  float:left;
+  //margin: 15px 0 0 15px;
+  // position:absolute;
+  // left:15px;
+  // top: 15px;
+}
+
+#controls-container {
+  background-color: @base;
+  color: #fff;
+  width: 100%;
+  position:fixed;
+  bottom:0;
+  padding: 20px;
+
+  #controls {
+
+    #checkin-primary {
+      display:inline-block;
+      width: 30%;
+      float:left;
+      width: 75px;
+      height: 75px;
+    }
+
+    #nearby-quests {
+      display:inline-block;
+      float:right;
+      width: 70%;
+
+      p {
+        margin: 0;
+        font-size: 12px;
+      }
+    }
+  }
+
+}
+
+#profile-wrapper {
+  background-color: @base;
+  color: #fff;
+  max-height: 100%;
+  padding-bottom: 400px;
+
+  #profile-content {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  #profile-img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #fff;
+    background-size:cover;
+    display:inline-block;
+    margin-right: 15px;
+  }
+
+  .info {
+    display:inline-block;
+  }
+
+  a.create {
+    display:inline-block;
+    padding: 15px 30px;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    text-decoration:none;
+    margin: 5px;
+  }
+
+  a.create:hover {
+    border: 2px solid #fff;
+    background-color:#fff;
+    color: @base;
+  }
+
+  a.profile-btn {
+    display:inline-block;
+    float:left;
+    text-align:center;
+    text-decoration:none;
+    padding-top: 30px;
+    width: 100px;
+    height: 70px;
+    margin: 10px 10px 10px 0;
+    border-radius: 3px;
+    border: 2px solid #fff;
+    color:#fff;
+  }
+
+  a.profile-btn:hover {
+    border: 2px solid #fff;
+    color:@base;
+    background-color:#fff;
+  }
+}
+
+ul#badge-list {
+  margin: 0;
+  list-style-type:none;
+  padding-top: 20px;
+
+  li {
+    display:inline-block;
+    width: 100px;
+    height: 100px;
+    padding: 4px;
+    border: 5px solid @base;
+    border-radius: 50%;
+    margin: 5px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
