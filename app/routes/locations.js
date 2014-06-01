@@ -76,4 +76,4 @@ exports.getAllLocations = (req, res)=>{
   locationCollection.find().toArray(function(err, docs) {
     res.send(docs);
   });
-}
+};
