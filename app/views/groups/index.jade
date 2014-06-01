@@ -4,3 +4,12 @@ block content
   h2 Groups
 
   button#new-group Make Group
+
+  #all-groups
+  h1 All Groups
+  each group in groups
+    h4= group.name
+
+  h1 User's Groups
+  each userGroup in usersGroups
+    h4= userGroup.name

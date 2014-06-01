@@ -10,8 +10,8 @@
 
   function makeGroup(){
 
-    ajax('/groups', 'get', null, html=>{
-      console.log(html);
+    ajax('/groups/new', 'get', null, html=>{
+      $('#all-groups').append(html);
     });
 
   }

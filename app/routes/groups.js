@@ -8,19 +8,28 @@ var User = traceur.require(__dirname + '/../models/user.js');
 
 
 exports.index = (req, res)=>{
-  console.log(req.session.userId);
-  User.findByUserId(req.session.userId, user=>{
-    console.log(user);
-  });
+  Group.findAll(groups=>{
+    User.findByUserId(req.session.userId, user=>{
+      Group.isOwner(req.session.userId, usersGroups=>{
+        console.log(usersGroups);
 
-  res.render('groups/index', {title: 'All Groups' });
+      res.render('groups/index', {user: user, groups: groups, usersGroups: usersGroups });
+      });
+    });
+  });
 };
 
 
 
+
 exports.create = (req, res)=>{
-  var group = new Group(req.session.userId, req.body.name);
-  group.save(()=>{
-    res.redirect('/');//needs to redirect to user profile page
-  });
+  console.log(req.body);
+    var group = new Group(req.session.userId, req.body.name);
+    group.save(()=>{
+      res.redirect('/groups');//needs to redirect to user profile page
+    });
+};
+
+exports.new = (req, res)=>{
+  res.render('groups/new');
 };
