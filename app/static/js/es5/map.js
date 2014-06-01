@@ -69,9 +69,9 @@ function success(position) {
 function addUserLocationMarker(position) {
   var symbol = {
     path: google.maps.SymbolPath.CIRCLE,
-    strokeColor: "darkgreen",
+    strokeColor: 'darkgreen',
     scale: 10
-  }
+  };
 
   var gmapsmarker = new google.maps.Marker({
     position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
