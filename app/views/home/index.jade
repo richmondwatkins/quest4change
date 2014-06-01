@@ -2,7 +2,15 @@ extends ../shared/template
 
 block content
 
+  #map
 
+  #controls
+    input#place(type='text', autofocus=true, placeholder='city')
+    button#add Add
+    select#vacations
+      option Select a Vacation
+    button#show Show
+    button#nsa Find Me
 
   form(method='POST', action='/register', enctype='multipart/form-data')
     input.form-control.username(type='text', name='userName', placeholder='Username', required='required')
@@ -10,3 +18,10 @@ block content
     input.form-control.password(type='password', name='password', placeholder='Password', required='required')
     input(type='file', name='image')
     button Create
+
+  //- form(method='GET', action='/locations')
+  //-   input(type='radio', name='history', value='history')
+  //-   button#go Go
+
+//- block script
+//-   script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=true')

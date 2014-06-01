@@ -9,7 +9,8 @@
   var map;
 
   function init(){
-    initMap(36, -86, 2);
+    initMap();
+    findMe();
   }
 
   function addMarker(lat, lng, name){
@@ -17,9 +18,25 @@
     new google.maps.Marker({map: map, position: latLng, title: name});
   }
 
+  function findMe(){
+  let options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0};
+  navigator.geolocation.getCurrentPosition(success, e => console.log(e), options);
+
+}
+
+function success(position) {
+let lat = position.coords.latitude;
+let lng = position.coords.longitude;
+let latLng = new google.maps.LatLng(lat, lng);
+map.setCenter(latLng);
+map.setZoom(15);
+addMarker(lat,lng);
+console.log(position);
+}
+
+
   function initMap(lat, lng, zoom){
-    let styles = [{'featureType':'water','elementType':'geometry','stylers':[{'color':'#ffdfa6'}]},{'featureType':'landscape','elementType':'geometry','stylers':[{'color':'#b52127'}]},{'featureType':'poi','elementType':'geometry','stylers':[{'color':'#c5531b'}]},{'featureType':'road.highway','elementType':'geometry.fill','stylers':[{'color':'#74001b'},{'lightness':-10}]},{'featureType':'road.highway','elementType':'geometry.stroke','stylers':[{'color':'#da3c3c'}]},{'featureType':'road.arterial','elementType':'geometry.fill','stylers':[{'color':'#74001b'}]},{'featureType':'road.arterial','elementType':'geometry.stroke','stylers':[{'color':'#da3c3c'}]},{'featureType':'road.local','elementType':'geometry.fill','stylers':[{'color':'#990c19'}]},{'elementType':'labels.text.fill','stylers':[{'color':'#ffffff'}]},{'elementType':'labels.text.stroke','stylers':[{'color':'#74001b'},{'lightness':-8}]},{'featureType':'transit','elementType':'geometry','stylers':[{'color':'#6a0d10'},{'visibility':'on'}]},{'featureType':'administrative','elementType':'geometry','stylers':[{'color':'#ffdfa6'},{'weight':0.4}]},{'featureType':'road.local','elementType':'geometry.stroke','stylers':[{'visibility':'off'}]}];
-    let mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP, styles: styles};
+    let mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP};
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
   }
 })();
