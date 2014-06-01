@@ -94,7 +94,7 @@ exports.lookup = (req, res, next)=>{
 
 
 exports.searchResults= (req, res)=>{
-  res.render('searchResults/searchResults', {title: 'search results'});
+  res.render('searchResults/showResults', {title: 'search results'});
 };
 
 exports.dashboard = (req, res)=>{

@@ -7,6 +7,9 @@
     get();
     $('#profile-wrapper').hide();
     $('body').on('click', '#profile', slideOut);
+
+
+
   }
 
   function get() {

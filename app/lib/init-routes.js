@@ -20,11 +20,10 @@ function load(app, fn){
   var groups = traceur.require(__dirname + '/../routes/groups.js');
 
   app.all('*', users.lookup);
-
   app.get('/', dbg, home.index);
 
   app.get('/dash', dbg, users.dashboard);
-  app.get('/searchResults', dbg, users.searchResults);
+  app.get('/showResults', dbg, users.searchResults);
   app.get('/badges', dbg, users.showBadges);
 
 
