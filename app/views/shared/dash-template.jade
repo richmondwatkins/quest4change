@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title= title
+    link(href='/css/normalize.css', rel='stylesheet')
+    link(href='/css/buttons.css', rel='stylesheet')
+    link(href='/less/app.css', rel='stylesheet')
+    meta(name='viewport', width='viewport-width', content='initial-scale=1.0, user-scalable=no')
+    script(src='/js/vendor/jquery-2.1.1.js')
+    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=SET_TO_TRUE_OR_FALSE')
+    script(type='text/javascript', src='/js/es5/map.js')
+  body
+
+    #body-wrapper
+      header
+        #header-content
+          #profile-link
+            a#profile(href='#')
+              img(src='/img/assets/icon-showprofile.svg')
+          #logo
+            a(href='/dash')
+              img(src='/img/assets/logo-white.svg')
+
+          input#search(type='text', name='search', placeholder='Search')
+
+      #profile-wrapper
+        #profile-content
+          .row
+            #profile-img(style='background-image:url("/img/assets/placeholder-avatar.jpg")')
+            .info
+              h2#username Username 1456
+              h3#nickname Student Johnny
+              h3#level Explorer
+          .row
+            a.create(href='#') Build Quest
+            a.create(href='#') Create Group
+          .row
+            a.profile-btn(href='/badges') BADGES
+            a.profile-btn(href='/groups') GROUPS
+            a.profile-btn(href='#') CHECK-INS
+            a.profile-btn(href='#') ACTIVE QUESTS
+            a.profile-btn(href='#') COMPLETE QUESTS
+            a.profile-btn(href='#') BUILT QUESTS
+          .clear
+
+      block content
+
+      script(src='/js/vendor/jquery-2.1.1.js')
+      script(src='/js/vendor/lodash-2.4.1.js')
+      script(src='/js/vendor/moment-2.6.0.js')
+      script(src='/js/vendor/buttons.js')
+      script(src='/js/vendor/traceur.js')
+      //script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=true')
+      script(src='/js/es6/compiled/main.js')
+      script(src='/js/es6/compiled/maps.js')
+
+      block scripts

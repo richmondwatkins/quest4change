@@ -3,18 +3,31 @@ html
   head
     meta(charset='utf-8')
     title= title
+    meta(name='viewport',width='viewport-width', content='initial-scale=1.0, user-scalable=no')
     link(href='/css/normalize.css', rel='stylesheet')
     link(href='/css/buttons.css', rel='stylesheet')
     link(href='/less/app.css', rel='stylesheet')
+
   body
-    block content
+    header
+      #header-content
+        #logo
+          img(src='/img/assets/logo-white.svg')
+        nav
+          ul
+            li
+              a(href='/') LOGIN
+            li
+              a(href='/dash') DASH
+        .clear
+    #container
+      block content
 
     script(src='/js/vendor/jquery-2.1.1.js')
     script(src='/js/vendor/lodash-2.4.1.js')
     script(src='/js/vendor/moment-2.6.0.js')
     script(src='/js/vendor/buttons.js')
     script(src='/js/vendor/traceur.js')
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyArPvnhx4BUiKnrYG6cyNX-YZL21LruNAQ&sensor=true')
     script(src='/js/es6/compiled/main.js')
     script(src='/js/es6/compiled/maps.js')
 
