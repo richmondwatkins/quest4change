@@ -28,6 +28,8 @@ function load(app, fn){
   app.get('/locations', dbg, locations.getAllLocations);
 
   app.post('/register', dbg, users.register);
+  app.post('/login', dbg, users.login);
+  app.get('/user/homemap', dbg, users.homemap);
   console.log('Routes Loaded');
   fn();
 }

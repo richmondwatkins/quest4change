@@ -1,7 +1,7 @@
 'use strict';
 
 var users = global.nss.db.collection('users');
-// var Mongo = require('mongodb');
+var Mongo = require('mongodb');
 // var _ = require('lodash');
 var bcrypt = require('bcrypt');
 
@@ -45,6 +45,13 @@ class User{
     }else{
       fn(null);
     }
+  }
+
+  static findByUserId(userId, fn){
+    userId = Mongo.ObjectID(userId);
+    users.findOne({_id:userId}, (err, user)=>{
+      fn(user);
+    });
   }
 
 }

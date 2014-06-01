@@ -4,6 +4,7 @@
 
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
+var Location = traceur.require(__dirname + '/../models/location.js');
 var multiparty = require('multiparty');
 var fs = require('fs');
 
@@ -31,6 +32,16 @@ exports.register = (req, res)=>{
         req.session.userId = null; //message - account already exists
         res.redirect('/');
       }
+    });
+  });
+};
+
+exports.homemap = (req, res)=>{
+  User.findByUserId(req.session.userId, user=>{
+    Location.findAll(loc=>{
+      console.log(loc);
+      console.log(user);
+      // res.render('users/index', {user:user, location:loc, title:'Home Map'});
     });
   });
 };
