@@ -41,6 +41,11 @@ class User{
     });
   }
 
+  addGroup(groupId){
+    this.groups.push(groupId);
+    users.save(this, ()=>{});
+  }
+
   login(user, fn){
     var isMatch = bcrypt.compareSync(user.password, this.password); //(entered password, db password)
     if(isMatch){
@@ -52,8 +57,6 @@ class User{
 
   static findByUserId(userId, fn){
     var id = Mongo.ObjectID(userId);
-    console.log('ID ID ID');
-    console.log(id);
     users.findOne({_id:id}, (err, user)=>{
       user = _.create(User.prototype, user);
       fn(user);
@@ -66,6 +69,7 @@ class User{
       fn(user);
     });
   }
+
 
 }
 

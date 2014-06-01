@@ -17,11 +17,8 @@ class Group{
 
   joinGroup(user){
     this.members.push(user);
-    console.log('THIS IS THE USER');
-    console.log(user);
-    console.log('THIS GROUPS MEMBERs');
-    console.log(this.members);
 
+    groups.save(this, ()=>{});
   }
 
 
@@ -30,17 +27,6 @@ class Group{
     groups.save(this, ()=>fn());
   }
 
-   isMember(userId){
-     groups.findOne({members: userId}, (err, user)=>{
-       if(user){
-         return true;
-       }else{
-         return false;
-       }
-
-     });
-
-   }
 
   static isOwner(userId, fn){
     groups.find({owner: userId}).toArray((err, owner)=>{

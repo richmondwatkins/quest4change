@@ -5,7 +5,7 @@
 var traceur = require('traceur');
 var Group = traceur.require(__dirname + '/../models/group.js');
 var User = traceur.require(__dirname + '/../models/user.js');
-var groups = global.nss.db.collection('groups');
+// var groups = global.nss.db.collection('groups');
 
 
 exports.index = (req, res)=>{
@@ -32,26 +32,19 @@ exports.show = (req, res)=>{
 
 };
 
-
+//XXXXXXXXX SAVING USER TO GROUP WORKS XXXXXXXXXXXXXX
 exports.join = (req, res)=>{
+  var userId = res.locals.user._id;
   Group.findByGroupId(req.params.groupId, group=>{
-    console.log(group);
-    group.joinGroup(res.locals.user);
-    group.save(()=>{
+    res.locals.user.addGroup(group._id);
+    group.joinGroup(userId);
+
+    // group.save(()=>{
       res.redirect('/groups');//needs to redirect to user profile page
+      // });
     });
-  });
 };
 
-
-
-// exports.show = (req, res)=>{
-//   Project.findById(req.params.id, project=>{
-//     res.render('projects/show', {project:project, title: 'Portfolio: Show'});
-//   });
-// };
-//
-//
 
 
 
