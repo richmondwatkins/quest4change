@@ -59,7 +59,7 @@ function addAllMarkers(markers) {
 }
 var markers = []; // make markers global for debugging
 function doAjax() {
-  $.ajax('http://localhost:3000/user/locations').done(function(data){
+  $.ajax('/user/locations').done(function(data){
     markers = data;
     addAllMarkers(data);
   });
